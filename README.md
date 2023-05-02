@@ -1,3 +1,3 @@
 # afBUDsrejser
 
-Afbudsrejser hvor man rejser kommer på auktion
+Afbudsrejser på auktion
