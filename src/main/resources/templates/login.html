@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
+    <link rel="icon" href="../assets/png-transparent-airplane-cartoon-plane-creative-train-marine-mammal-photography-decoupage.png">
+    <link rel="stylesheet" href="../static/styles.css">
+
 </head>
 <body>
 <div class="navbar">
@@ -14,5 +17,47 @@
     <li><a href="register.html">Kontakt</a></li>
   </ul>
 </div>
+<div>
+    <h2>Admin Controls</h2>
+    <button class="btn" onclick="showCreateAuctionForm()">Create an auction</button>
+</div>
+<br>
+<div id="createAuction" style="display: none">
+    <form id="createAuctionForm">
+        <label for="inpDeadline">Auktion deadline:
+            <input type="date" name="deadline" id="inpDeadline">
+        </label>
+        <label for="inpStartPrice">Start pris:
+            <input type="number" name="startingBid" id="inpStartPrice">
+        </label>
+        <label for="inpDestinationCity">By:
+            <input type="text" name="destinationCity" id="inpDestinationCity">
+        </label>
+        <label for="inpDestinationCountry">Land:
+            <input type="text" name="destinationCountry" id="inpDestinationCountry">
+        </label>
+        <label for="inpAirline">Flyselskab:
+            <input type="text" name="airline" id="inpAirline">
+        </label>
+        <label for="inpFlightNumber">Flynummer:
+            <input type="text" name="flightNo" id="inpFlightNumber">
+        </label>
+        <label for="inpDeparture">Afgang:
+            <input type="date" name="departureDate" id="inpDeparture">
+        </label>
+        <label for="inpReturn">Hjemkomst:
+            <input type="date" name="returnDate" id="inpReturn">
+        </label>
+        <label for="inpHotel">Hotel link:
+            <input type="url" name="hotel" id="inpHotel">
+        </label>
+        <button type="submit" class="btn" onclick="createAuction()">Create auction</button>
+    </form>
+
+</div>
+
+<script src="../js/user.js"></script>
+<script src="../js/trip.js"></script>
+<script src="../js/auction.js"></script>
 </body>
 </html>
