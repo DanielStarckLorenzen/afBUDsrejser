@@ -23,4 +23,9 @@ public class TripRESTController {
     public void createTrip(@RequestBody Trip trip){
       tripRepository.save(trip);
     }
+
+    @GetMapping("/trip/{id}")
+    public Trip getTrip(@PathVariable int id){
+      return tripRepository.findById(id).get();
+    }
 }
