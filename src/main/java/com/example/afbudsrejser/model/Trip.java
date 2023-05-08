@@ -24,6 +24,7 @@ public class Trip {
     private LocalDate deadline;
     private double startingBid;
     private double highestBid;
+    private String pictureUrl;
 
     @ManyToOne
     @JoinColumn(name = "userid")

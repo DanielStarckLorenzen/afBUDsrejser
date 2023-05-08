@@ -43,12 +43,43 @@ async function onLoad() {
         let country = params[1];
         if (url.includes(country)) {
             allTrips = allTrips.filter(trip => trip.destinationCountry === country);
-            allAuctions = allAuctions.filter(auction => auction.trip.destinationCountry === country);
             console.log(country);
         }
     }
     console.log(allTrips);
+    /*
+    const cardTest = document.getElementById("cf0");
+    cardTest.style.backgroundImage = "url('https://www.tutorialspoint.com/computer_fundamentals/images/rom.jpg')";
+
+     */
+    printTripCards(allTrips);
 }
+
+function printTripCards(allTrips) {
+    const allTripCardsDiv = document.getElementById("tripCards");
+    for (let trip of allTrips) {
+        allTripCardsDiv.innerHTML += `<div class="flip-card">
+        <div class="flip-card-inner">
+            <div class="flip-card-front" id="cf${trip.id}">
+                <p class="flip-card-destination">${trip.destinationCity}</p>
+                <p class="flip-card-bid">${trip.startingBid}</p>
+            </div>
+            <div class="flip-card-back">
+                <p class="flip-card-country">${trip.destinationCountry}</p>
+                <p class="flip-card-city">${trip.destinationCity}</p>
+                <p class="flip-card-airline">${trip.airline}</p>
+                <p class="flip-card-departure">${trip.departureDate}</p>
+                <p class="flip-card-return">${trip.returnDate}</p>
+                <p class="flip-card-deadline">${trip.deadline}</p>
+
+            </div>
+        </div>`
+        const picture = document.getElementById(`cf${trip.id}`);
+
+        picture.style.backgroundImage = `url('${trip.pictureUrl}')`;
+    }
+}
+
 
 async function loadTrips() {
     const response = await fetch("http://localhost:8080/trips");
