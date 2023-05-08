@@ -24,7 +24,7 @@ function showCreateTripForm() {
 function createTrip() {
     const createTripForm = document.getElementById("createTripForm").elements;
     const trip = {};
-    for (let i = 0; i < 9; i++) {
+    for (let i = 0; i < createTripForm.length; i++) {
         console.log(createTripForm[i])
         const element = createTripForm[i];
         trip[element.name] = element.value;
@@ -60,7 +60,7 @@ function printTripCards(allTrips) {
     for (let trip of allTrips) {
         allTripCardsDiv.innerHTML += `<div class="flip-card">
         <div class="flip-card-inner">
-            <div class="flip-card-front" id="cf${trip.id}">
+            <div class="flip-card-front" id="cf${trip.tripId}">
                 <p class="flip-card-destination">${trip.destinationCity}</p>
                 <p class="flip-card-bid">${trip.startingBid}</p>
             </div>
@@ -74,7 +74,7 @@ function printTripCards(allTrips) {
 
             </div>
         </div>`
-        const picture = document.getElementById(`cf${trip.id}`);
+        const picture = document.getElementById(`cf${trip.tripId}`);
 
         picture.style.backgroundImage = `url('${trip.pictureUrl}')`;
     }
