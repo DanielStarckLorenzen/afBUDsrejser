@@ -19,11 +19,11 @@
 </div>
 <div>
     <h2>Admin Controls</h2>
-    <button class="btn" onclick="showCreateAuctionForm()">Create an auction</button>
+    <button class="btn" onclick="showCreateTripForm()">Create an auction</button>
 </div>
 <br>
-<div id="createAuction" style="display: none">
-    <form id="createAuctionForm">
+<div id="createTrip" style="display: none">
+    <form id="createTripForm">
         <label for="inpDeadline">Auktion deadline:
             <input type="date" name="deadline" id="inpDeadline">
         </label>
@@ -51,13 +51,12 @@
         <label for="inpHotel">Hotel link:
             <input type="url" name="hotel" id="inpHotel">
         </label>
-        <button type="submit" class="btn" onclick="createAuction()">Create auction</button>
+        <button type="submit" class="btn" onclick="createTrip()">Create auction</button>
     </form>
 
 </div>
 
 <script src="../js/user.js"></script>
 <script src="../js/trip.js"></script>
-<script src="../js/auction.js"></script>
 </body>
 </html>

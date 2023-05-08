@@ -21,8 +21,13 @@ public class Trip {
     private LocalDate departureDate;
     private LocalDate returnDate;
     private String hotel;
+    private LocalDate deadline;
+    private double startingBid;
+    private double highestBid;
 
-    @OneToOne(mappedBy = "trip")
-    private Auction auction;
+    @ManyToOne
+    @JoinColumn(name = "userid")
+    private User user;
+
 
 }

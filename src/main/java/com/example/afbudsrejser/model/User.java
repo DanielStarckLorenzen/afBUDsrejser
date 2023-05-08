@@ -21,6 +21,6 @@ public class User {
 
     @OneToMany(mappedBy = "user")
     @JsonBackReference
-    private Set<Auction> auctions;
+    private Set<Trip> trips;
 
 }
