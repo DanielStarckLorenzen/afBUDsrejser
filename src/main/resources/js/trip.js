@@ -92,7 +92,51 @@ function printTripCards(allTrips) {
     });
 }
 
+async function clickedTrip() {
+    let tripId = window.location.href.split("=")[1];
+    console.log(tripId);
+    let trip = await getTrip(tripId);
 
+    const tripImage = document.getElementById("tripImage");
+    tripImage.src = trip.pictureUrl;
+
+    const city = document.getElementById("city");
+    city.textContent = trip.destinationCity + ", " + trip.destinationCountry;
+
+    const airline = document.getElementById("airline");
+    airline.textContent = trip.airline;
+
+    const flightNo = document.getElementById("flightNo");
+    flightNo.textContent = trip.flightNo;
+
+    const departure = document.getElementById("departure");
+    departure.textContent = trip.departureDate;
+
+    const returnDate = document.getElementById("return");
+    returnDate.textContent = trip.returnDate;
+
+    const hotelLink = document.getElementById("hotel");
+    hotelLink.href = trip.hotel;
+    hotelLink.textContent = trip.hotel;
+
+    const startingBid = document.getElementById("startingBid");
+    startingBid.textContent = trip.startingBid;
+
+    const deadline = document.getElementById("deadline");
+    deadline.textContent = trip.deadline;
+
+
+
+
+
+}
+
+async function getTrip(id) {
+    const response = await fetch("http://localhost:8080/trip/" + id);
+    const trip = await response.json();
+    console.log(trip);
+    return trip;
+}
 
 
 async function loadTrips() {
