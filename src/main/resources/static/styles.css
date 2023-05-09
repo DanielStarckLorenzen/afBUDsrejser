@@ -32,9 +32,16 @@ body {
     color: #555;
 }
 
+#tripCards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 20px;
+}
+
 .flip-card {
     background-color: transparent;
-    width: 190px;
+    width: 300px;
     height: 254px;
     perspective: 1000px;
     font-family: sans-serif;
@@ -93,5 +100,143 @@ body {
     color: white;
     transform: rotateY(180deg);
 }
+
+.flip-card-back p {
+    font-size: 0.9em;
+    margin: 9px;
+}
+
+#createTrip {
+    display: none;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f2f2f2;
+}
+
+#createTripForm {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+#createTripForm label {
+    display: block;
+    width: calc(50% - 10px);
+    margin-bottom: 15px;
+    font-size: 16px;
+}
+
+#createTripForm input[type="date"],
+#createTripForm input[type="number"],
+#createTripForm input[type="text"],
+#createTripForm input[type="url"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+#createTripForm button {
+    margin-top: 15px;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#createTripForm button:hover {
+    background-color: #3e8e41;
+}
+
+
+.admin-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #f2f2f2;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.admin-controls h2 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.admin-controls button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.admin-controls button:hover {
+    background-color: #3e8e41;
+}
+
+.trip {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-bottom: 30px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f2f2f2;
+}
+
+.trip-image {
+    flex: 0 0 50%;
+    max-width: 50%;
+    margin-right: 20px;
+}
+
+.trip-image img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.trip-info {
+    flex: 0 0 50%;
+    max-width: 50%;
+}
+
+.trip-title {
+    margin: 0 0 15px;
+    font-size: 24px;
+}
+
+.trip-details {
+    display: flex;
+    flex-wrap: wrap;
+    margin: -5px;
+}
+
+.detail {
+    flex: 0 0 50%;
+    padding: 5px;
+}
+
+.detail-label {
+    display: inline-block;
+    width: 120px;
+    font-weight: bold;
+}
+
+.detail-value {
+    display: inline-block;
+    margin-left: 10px;
+}
+
 
 

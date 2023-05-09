@@ -57,28 +57,42 @@ async function onLoad() {
 
 function printTripCards(allTrips) {
     const allTripCardsDiv = document.getElementById("tripCards");
+
     for (let trip of allTrips) {
-        allTripCardsDiv.innerHTML += `<div class="flip-card">
+        allTripCardsDiv.innerHTML += `
+      <div class="flip-card">
         <div class="flip-card-inner">
-            <div class="flip-card-front" id="cf${trip.tripId}">
-                <p class="flip-card-destination">${trip.destinationCity}</p>
-                <p class="flip-card-bid">${trip.startingBid}</p>
-            </div>
-            <div class="flip-card-back">
-                <p class="flip-card-country">${trip.destinationCountry}</p>
-                <p class="flip-card-city">${trip.destinationCity}</p>
-                <p class="flip-card-airline">${trip.airline}</p>
-                <p class="flip-card-departure">${trip.departureDate}</p>
-                <p class="flip-card-return">${trip.returnDate}</p>
-                <p class="flip-card-deadline">${trip.deadline}</p>
+          <div class="flip-card-front" id="cf${trip.tripId}">
+            <p class="flip-card-destination">${trip.destinationCity}</p>
+            <p class="flip-card-bid">${trip.startingBid}</p>
+          </div>
+          <div class="flip-card-back" id="fc${trip.tripId}">
+            <p class="flip-card-country">Land: ${trip.destinationCountry}</p>
+            <p class="flip-card-city">By: ${trip.destinationCity}</p>
+            <p class="flip-card-airline">Flyselskab: ${trip.airline}</p>
+            <p class="flip-card-departure">Afgang: ${trip.departureDate}</p>
+            <p class="flip-card-return">Retur: ${trip.returnDate}</p>
+            <p class="flip-card-deadline">Deadline: ${trip.deadline}</p>
+          </div>
+        </div>
+      </div>
+    `;
 
-            </div>
-        </div>`
         const picture = document.getElementById(`cf${trip.tripId}`);
-
         picture.style.backgroundImage = `url('${trip.pictureUrl}')`;
     }
+
+    // Attach the event listener to the parent element
+    allTripCardsDiv.addEventListener("click", function(event) {
+        // Check if the clicked element has the flip-card class
+        if (event.target.classList.contains("flip-card-back")) {
+            const tripId = event.target.id.slice(2);
+            window.location.href = `tripDetails.html?id=${tripId}`;
+        }
+    });
 }
+
+
 
 
 async function loadTrips() {
