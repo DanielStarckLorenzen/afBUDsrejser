@@ -241,11 +241,11 @@ body {
     max-width: 50%;
     height: auto;
     overflow: hidden;
-    margin-right: 20px;
+
 }
 
 #tripImage {
-    width: 100%;
+    width: 90%;
     height: 100%;
     object-fit: cover;
     border-radius: 5px;
@@ -400,6 +400,18 @@ body {
 
 .auction-bidding button:hover {
     background-color: #3e8e41;
+}
+
+#allBids {
+    position: relative;
+    background-color: #f8f8f8;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.15);
+    text-align: center;
+    width: 40%;
+    margin-left: 20px;
+    margin-top: 10px;
 }
 
 #loginOverlay, #registerOverlay {
