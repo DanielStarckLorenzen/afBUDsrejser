@@ -128,8 +128,24 @@ async function clickedTrip() {
     const startingBid = document.getElementById("startingBid");
     startingBid.textContent = trip.startingBid;
 
-    const deadline = document.getElementById("deadline");
+    const deadline = document.getElementById("auctionDeadline");
     deadline.textContent = trip.deadline;
+
+    let user = sessionStorage.getItem("user");
+    if (user) {
+        console.log(user)
+        user = JSON.parse(user);
+        const userName = document.getElementById("userName");
+        userName.textContent = user.name;
+
+        const userInformation = document.getElementById("userInformation");
+        userInformation.style.display = "block";
+
+        const registerLoginBtn = document.getElementById("registerLoginBtn");
+        registerLoginBtn.style.display = "none";
+    } else {
+        console.log("no user");
+    }
 
 
 

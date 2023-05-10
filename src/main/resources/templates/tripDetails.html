@@ -13,6 +13,7 @@
         <a href="trips.html" class="nav-item" active-color="green">Rejser</a>
         <a href="facts.html" class="nav-item" active-color="blue">Fakta</a>
         <a href="contact.html" class="nav-item" active-color="rebeccapurple">Kontakt</a>
+        <button class="nav-item" id="logoutBtn" type="button" onclick="logoutUser()">Logout</button>
         <span class="nav-indicator"></span>
     </nav>
 </div>
@@ -28,11 +29,15 @@
         <form>
             <label for="bid">Dit bud:</label>
             <input type="number" id="bid" name="bid">
-            <h3>DKK</h3>
-            <input type="text" id="userName" name="name" placeholder="Dit Fulde Navn">
-            <input type="email" id="email" name="email" placeholder="E-Mail">
-            <label for="birthday">Din Fødselsdato:</label>
-            <input type="date" id="birthday" name="birthday">
+            <h3 id="currency">DKK</h3>
+            <div id="registerLoginBtn">
+                <button type="button" onclick="loginUser()">Login</button>
+                <button type="button" onclick="registerUser()">Register</button>
+            </div>
+            <div id="userInformation" style="display: none">
+                <h3>Velkommen tilbage</h3>
+                <h3 id="userName"></h3>
+            </div>
             <button type="submit">Submit Bid</button>
         </form>
     </div>
