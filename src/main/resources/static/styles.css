@@ -496,4 +496,65 @@ body {
     display: block;
 }
 
+/* Filters container */
+.filters {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f7f7f7;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Filter labels */
+.filters label {
+    margin-right: 10px;
+    font-size: 16px;
+}
+
+/* Filter dropdowns */
+.filters select,
+.filters input[type="date"],
+.filters input[type="checkbox"],
+.filters #sort-filter {
+    flex: 1;
+    margin-right: 10px;
+    padding: 8px;
+    border: none;
+    border-radius: 4px;
+    background-color: #fff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    font-size: 16px;
+}
+
+/* Custom checkbox */
+.filters input[type="checkbox"] {
+    position: relative;
+    appearance: none;
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.filters input[type="checkbox"]::before {
+    content: "";
+    position: absolute;
+    top: 1px;
+    left: 1px;
+    width: 18px;
+    height: 18px;
+    border-radius: 3px;
+    background-color: #fff;
+    transition: background-color 0.3s ease;
+}
+
+.filters input[type="checkbox"]:checked::before {
+    background-color: #4CAF50;
+}
+
 

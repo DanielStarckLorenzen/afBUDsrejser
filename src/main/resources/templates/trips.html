@@ -20,6 +20,55 @@
     <h1>Her er en oversigt over alle tilgængelige afbudsrejser</h1>
 </div>
 
+<div class="filters">
+    <!-- Country filter -->
+    <label for="country-filter">Country</label>
+    <select id="country-filter">
+        <option value="">Any</option>
+        <option value="usa">USA</option>
+        <option value="france">France</option>
+        <option value="italy">Italy</option>
+        <!-- more options... -->
+    </select>
+
+    <!-- City filter -->
+    <label for="city-filter">City</label>
+    <select id="city-filter">
+        <option value="">Any</option>
+        <option value="new-york">New York</option>
+        <option value="paris">Paris</option>
+        <option value="rome">Rome</option>
+        <!-- more options... -->
+    </select>
+
+    <!-- Deadline filter -->
+    <label for="deadline-filter">Deadline</label>
+    <input type="date" id="deadline-filter">
+
+    <!-- Departure date filter -->
+    <label for="departure-filter">Departure date</label>
+    <input type="date" id="departure-filter">
+
+    <!-- New filter -->
+    <label for="type-filter">Type</label>
+    <select id="type-filter">
+        <option value="">Any</option>
+        <option value="new">Ny</option>
+        <option value="alreadyBid">Budt på</option>
+    </select>
+
+    <!-- Sort filter -->
+    <label for="sort-filter">Sort by</label>
+    <select id="sort-filter">
+        <option value="none"></option>
+        <option value="price">Price</option>
+        <option value="deadline">Deadline</option>
+        <option value="alphabetical">Alphabetical</option>
+        <!-- more options... -->
+    </select>
+</div>
+
+
 <div id="tripCards">
 
 </div>
