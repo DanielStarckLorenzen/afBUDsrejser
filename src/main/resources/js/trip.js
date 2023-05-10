@@ -62,12 +62,24 @@ function printTripCards(allTrips) {
     const allTripCardsDiv = document.getElementById("tripCards");
 
     for (let trip of allTrips) {
+        let percentageRisen = Math.floor((trip.highestBid / trip.startingBid) * 100);
+        let percentageRisenString;
+        let percentageColor = "green";
+        if (percentageRisen > 0) {
+            percentageRisenString = percentageRisen.toString() + "%";
+        } else {
+            percentageRisenString = "New!";
+            percentageColor = "orange";
+        }
         allTripCardsDiv.innerHTML += `
       <div class="flip-card">
         <div class="flip-card-inner" id="fi${trip.tripId}">
           <div class="flip-card-front" id="cf${trip.tripId}">
             <p class="flip-card-destination">${trip.destinationCity}</p>
             <p class="flip-card-bid">${trip.startingBid}</p>
+            <div class="percentage" style="background-color: ${percentageColor}">
+                <span class="percentage-text">${percentageRisenString}</span>
+            </div>
           </div>
           <div class="flip-card-back" id="fc${trip.tripId}">
             <p class="flip-card-country">Land: ${trip.destinationCountry}</p>
@@ -242,12 +254,24 @@ async function seePopularTrips() {
     console.log(fourRandomTrips);
     const popularTrips = document.getElementById("popularTrips");
     for (let trip of fourRandomTrips) {
+        let percentageRisen = Math.floor((trip.highestBid / trip.startingBid) * 100);
+        let percentageRisenString;
+        let percentageColor = "green";
+        if (percentageRisen > 0) {
+            percentageRisenString = percentageRisen.toString() + "%";
+        } else {
+            percentageRisenString = "New!";
+            percentageColor = "orange";
+        }
         popularTrips.innerHTML += `
         <div class="flip-card">
         <div class="flip-card-inner" id="fi${trip.tripId}">
           <div class="flip-card-front" id="cf${trip.tripId}">
             <p class="flip-card-destination">${trip.destinationCity}</p>
             <p class="flip-card-bid">${trip.startingBid}</p>
+            <div class="percentage" style="background-color: ${percentageColor}">
+                <span class="percentage-text">${percentageRisenString}</span>
+            </div>
           </div>
           <div class="flip-card-back" id="fc${trip.tripId}">
             <p class="flip-card-country">Land: ${trip.destinationCountry}</p>
