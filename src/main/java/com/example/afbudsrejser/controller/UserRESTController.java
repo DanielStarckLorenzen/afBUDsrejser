@@ -18,5 +18,10 @@ public class UserRESTController {
         return userRepository.findByEmailAndPassword(user.getEmail(), user.getPassword());
     }
 
+    @PostMapping("/user")
+    public void createUser(@RequestBody User user){
+        userRepository.save(user);
+    }
+
 
 }

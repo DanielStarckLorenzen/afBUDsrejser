@@ -1,10 +1,3 @@
-
-function showCreateAuctionForm() {
-    const createAuctionDiv = document.getElementById("createAuction");
-    createAuctionDiv.style.display = "block";
-
-}
-
 function loginUser() {
     const loginOverlay = document.createElement("div");
     loginOverlay.id = "loginOverlay";
@@ -68,12 +61,45 @@ function registerUser() {
         <input type="password" id="password" name="password" required><br>
         <label for="fullName">Full Name:</label><br>
         <input type="text" id="fullName" name="name" required><br>
+        <label for="birthDate">Birth Date:</label><br>
+        <input type="date" id="birthDate" name="birthDate" required><br><br>
         <input type="submit" value="Submit">
         <button type="button" id="cancel" onclick="location.reload()">Annuller</button>
         `;
+    registerForm.addEventListener("submit", function(event) {
+        event.preventDefault();
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+        const fullName = document.getElementById("fullName").value;
+        const birthDate = document.getElementById("birthDate").value;
+        createUser(email, password, fullName, birthDate);
+    });
+
     registerOverlay.appendChild(registerForm);
     document.body.appendChild(registerOverlay);
+}
 
+function createUser(email, password, fullName, birthDate) {
+    const user = {
+        email: email,
+        password: password,
+        name: fullName,
+        birthDate: birthDate
+    };
+
+    fetch("http://localhost:8080/user", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(user)
+    }).then(r => {
+    if (!r.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return r.json();
+    });
+    location.reload();
 }
 
 function logoutUser() {
