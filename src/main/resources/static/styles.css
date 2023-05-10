@@ -89,6 +89,13 @@ body {
     cursor: pointer;
 }
 
+.flip-card-startBid {
+    font-size: 0.9em;
+    font-weight: bold;
+    text-align: center;
+    margin: 0;
+}
+
 .flip-card p {
     font-size: 1.5em;
     font-weight: 900;
@@ -128,7 +135,7 @@ body {
     background-image: url("https://www.cpt.dk/media/19621/shutterstock_433413835.jpg?width=1110");
     background-position: center;
     background-size: cover;
-    color: coral;
+    color: white;
 }
 
 .flip-card-back {
@@ -152,8 +159,8 @@ body {
     position: absolute;
     top: 5px;
     left: 5px;
-    width: 45px;
-    height: 45px;
+    width: 47px;
+    height: 47px;
     background-color: green;
     border-radius: 50%;
     display: flex;
@@ -163,7 +170,7 @@ body {
 }
 
 .percentage-text {
-    font-size: 0.9em;
+    font-size: 0.8em;
     font-weight: bold;
     color: white;
 }

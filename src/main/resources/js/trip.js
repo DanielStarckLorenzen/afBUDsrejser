@@ -66,9 +66,9 @@ function printTripCards(allTrips) {
         let percentageRisenString;
         let percentageColor = "green";
         if (percentageRisen > 0) {
-            percentageRisenString = percentageRisen.toString() + "%";
+            percentageRisenString = "⬆" + percentageRisen.toString() + "%";
         } else {
-            percentageRisenString = "New!";
+            percentageRisenString = "Ny!";
             percentageColor = "orange";
         }
         allTripCardsDiv.innerHTML += `
@@ -76,7 +76,8 @@ function printTripCards(allTrips) {
         <div class="flip-card-inner" id="fi${trip.tripId}">
           <div class="flip-card-front" id="cf${trip.tripId}">
             <p class="flip-card-destination">${trip.destinationCity}</p>
-            <p class="flip-card-bid">${trip.startingBid}</p>
+            <p class="flip-card-highestBid">${trip.highestBid}</p>
+            <h5 class="flip-card-startBid">(${trip.startingBid})</h5>
             <div class="percentage" style="background-color: ${percentageColor}">
                 <span class="percentage-text">${percentageRisenString}</span>
             </div>
@@ -92,6 +93,12 @@ function printTripCards(allTrips) {
         </div>
       </div>
     `;
+        const highestBid = document.getElementById(`fi${trip.tripId}`).querySelector(".flip-card-highestBid");
+        const startBid = document.getElementById(`fi${trip.tripId}`).querySelector(".flip-card-startBid");
+        if (trip.highestBid < trip.startingBid) {
+            startBid.style.display = "none";
+            highestBid.textContent = trip.startingBid;
+        }
 
         const picture = document.getElementById(`cf${trip.tripId}`);
         picture.style.backgroundImage = `url('${trip.pictureUrl}')`;
