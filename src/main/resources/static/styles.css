@@ -271,4 +271,20 @@ body {
     width: 300px;
 }
 
+#destinationList ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+#destinationList li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+#destinationList li .flag-icon {
+    font-size: 24px;
+    margin-right: 10px;
+}
+
 
