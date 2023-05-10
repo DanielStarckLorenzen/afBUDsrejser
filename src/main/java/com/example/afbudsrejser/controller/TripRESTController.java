@@ -1,6 +1,7 @@
 package com.example.afbudsrejser.controller;
 
 import com.example.afbudsrejser.model.Trip;
+import com.example.afbudsrejser.repository.BidRepository;
 import com.example.afbudsrejser.repository.TripRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -13,6 +14,9 @@ public class TripRESTController {
 
     @Autowired
     private TripRepository tripRepository;
+
+    @Autowired
+    BidRepository bidRepository;
 
     @GetMapping("/trips")
     public List<Trip> getTrips(){
@@ -29,8 +33,8 @@ public class TripRESTController {
       return tripRepository.findById(id).get();
     }
 
-    @PostMapping("/bid")
-    public void bid(@RequestBody Trip trip){
+    @PostMapping("/updateTrip")
+    public void bid(@RequestBody Trip trip) {
       tripRepository.save(trip);
     }
 }

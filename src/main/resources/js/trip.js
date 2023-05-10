@@ -131,6 +131,16 @@ async function clickedTrip() {
     const deadline = document.getElementById("auctionDeadline");
     deadline.textContent = trip.deadline;
 
+    let allBids = await getBids(tripId);
+    console.log(allBids);
+    const bidHistory = document.getElementById("bidHistory");
+    allBids.sort((a, b) => (a.bid > b.bid) ? 1 : -1);
+    for (let bid of allBids) {
+        bidHistory.innerHTML += `
+        <li class="list-group-item">${bid.bidAmount} DKK af ${bid.user.name} - ${bid.bidDate}</li>
+        `;
+    }
+
     const highestBid = document.getElementById("highestBid");
     if (trip.highestBid) {
         let highestBidder = trip.user.name;
@@ -162,19 +172,25 @@ async function clickedTrip() {
     const bidForm = document.getElementById("bidForm");
     bidForm.addEventListener("submit", function(event) {
         event.preventDefault();
-        const bid = document.getElementById("bid").value;
-        console.log(bid);
-        if (bid > trip.highestBid) {
+        const bidAmount = document.getElementById("bid").value;
+        console.log(bidAmount);
+        if (bidAmount > trip.highestBid) {
             console.log("bid accepted");
-            const userId = JSON.parse(sessionStorage.getItem("user"));
-            bidOnTrip(bid, user, trip);
+            const user = JSON.parse(sessionStorage.getItem("user"));
+            bidOnTrip(bidAmount, user, trip);
         } else {
             console.log("bid too low");
         }
     });
 }
 
-function bidOnTrip(bid, user, trip) {
+function bidOnTrip(bidAmount, user, trip) {
+    const bid = {
+        bidAmount: bidAmount,
+        bidDate: new Date(),
+        user: user,
+        trip: trip
+    }
     trip = {
         tripId: trip.tripId,
         destinationCity: trip.destinationCity,
@@ -187,17 +203,25 @@ function bidOnTrip(bid, user, trip) {
         pictureUrl: trip.pictureUrl,
         startingBid: trip.startingBid,
         deadline: trip.deadline,
-        highestBid: bid,
+        highestBid: bidAmount,
         user: user
     }
 
-    fetch("http://localhost:8080/bid", {
+    fetch("http://localhost:8080/updateTrip", {
         method: "POST",
         body: JSON.stringify(trip),
         headers: {
             "Content-Type": "application/json"
         }
     });
+    fetch("http://localhost:8080/bid", {
+        method: "POST",
+        body: JSON.stringify(bid),
+        headers: {
+            "Content-Type": "application/json"
+        }
+    });
+    location.reload();
 }
 
 async function getTrip(id) {
@@ -213,4 +237,12 @@ async function loadTrips() {
     const trips = await response.json();
     console.log(trips);
     return trips;
+}
+
+async function getBids(id) {
+    console.log(id);
+    const response = await fetch("http://localhost:8080/bids/" + id);
+    const bids = await response.json();
+    console.log(bids);
+    return bids;
 }
