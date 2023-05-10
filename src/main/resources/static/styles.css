@@ -68,11 +68,13 @@ body {
 }
 
 .flip-card {
+    margin: 20px;
     background-color: transparent;
     width: 300px;
     height: 254px;
     perspective: 1000px;
     font-family: sans-serif;
+    cursor: pointer;
 }
 
 .flip-card p {
@@ -225,14 +227,18 @@ body {
 .trip-image {
     flex: 0 0 50%;
     max-width: 50%;
+    height: auto;
+    overflow: hidden;
     margin-right: 20px;
 }
 
-.trip-image img {
+#tripImage {
     width: 100%;
-    height: auto;
+    height: 100%;
     object-fit: cover;
+    border-radius: 5px;
 }
+
 
 .trip-info {
     flex: 0 0 50%;

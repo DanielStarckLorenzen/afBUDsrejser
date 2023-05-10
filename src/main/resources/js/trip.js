@@ -52,6 +52,9 @@ async function onLoad() {
     cardTest.style.backgroundImage = "url('https://www.tutorialspoint.com/computer_fundamentals/images/rom.jpg')";
 
      */
+    const items = document.querySelectorAll(".nav-item");
+    handleIndicator(items[1]);
+
     printTripCards(allTrips);
 }
 
@@ -61,7 +64,7 @@ function printTripCards(allTrips) {
     for (let trip of allTrips) {
         allTripCardsDiv.innerHTML += `
       <div class="flip-card">
-        <div class="flip-card-inner">
+        <div class="flip-card-inner" id="fi${trip.tripId}">
           <div class="flip-card-front" id="cf${trip.tripId}">
             <p class="flip-card-destination">${trip.destinationCity}</p>
             <p class="flip-card-bid">${trip.startingBid}</p>
@@ -84,15 +87,18 @@ function printTripCards(allTrips) {
 
     // Attach the event listener to the parent element
     allTripCardsDiv.addEventListener("click", function(event) {
-        // Check if the clicked element has the flip-card class
-        if (event.target.classList.contains("flip-card-back")) {
-            const tripId = event.target.id.slice(2);
+        // Check if the clicked element has the flip-card-back class
+        if (event.target.closest(".flip-card-inner")) {
+            const tripId = event.target.closest(".flip-card-inner").id.slice(2);
             window.location.href = `tripDetails.html?id=${tripId}`;
         }
     });
 }
 
 async function clickedTrip() {
+    const items = document.querySelectorAll(".nav-item");
+    handleIndicator(items[1]);
+
     let tripId = window.location.href.split("=")[1];
     console.log(tripId);
     let trip = await getTrip(tripId);
@@ -100,8 +106,8 @@ async function clickedTrip() {
     const tripImage = document.getElementById("tripImage");
     tripImage.src = trip.pictureUrl;
 
-    const city = document.getElementById("city");
-    city.textContent = trip.destinationCity + ", " + trip.destinationCountry;
+    const tripTitle = document.getElementById("tripTitle");
+    tripTitle.textContent = trip.destinationCity + ", " + trip.destinationCountry;
 
     const airline = document.getElementById("airline");
     airline.textContent = trip.airline;
