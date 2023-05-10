@@ -131,6 +131,14 @@ async function clickedTrip() {
     const deadline = document.getElementById("auctionDeadline");
     deadline.textContent = trip.deadline;
 
+    const highestBid = document.getElementById("highestBid");
+    if (trip.highestBid) {
+        let highestBidder = trip.user.name;
+        highestBid.textContent = trip.highestBid + " DKK af " + highestBidder;
+    } else {
+        highestBid.textContent = trip.startingBid + " DKK. Ingen bud endnu. Dette er start-budet";
+    }
+
     let user = sessionStorage.getItem("user");
     if (user) {
         console.log(user)
@@ -146,6 +154,10 @@ async function clickedTrip() {
     } else {
         console.log("no user");
     }
+
+    const bid = document.getElementById("bid");
+    bid.min = trip.highestBid ? trip.highestBid + 0 : trip.startingBid;
+    bid.value = bid.min;
 
 
 
