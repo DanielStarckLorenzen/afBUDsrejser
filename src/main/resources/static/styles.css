@@ -287,4 +287,68 @@ body {
     margin-right: 10px;
 }
 
+.auction-bidding {
+    position: relative;
+    background-color: #f8f8f8;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.15);
+    text-align: center;
+    width: 40%;
+}
+
+.auction-bidding h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+.auction-bidding h3 {
+    position: relative;
+    right: 0;
+    margin: -30px -85% 30px 0;;
+}
+
+.auction-bidding form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.auction-bidding label {
+    font-weight: bold;
+    font-size: 1.2em;
+    margin-top: 20px;
+    display: block;
+}
+
+.auction-bidding input[type="number"],
+.auction-bidding input[type="text"],
+.auction-bidding input[type="email"],
+.auction-bidding input[type="date"] {
+    width: 100%;
+    border-radius: 5px;
+    border: none;
+    padding: 10px;
+    margin-top: 5px;
+    font-size: 1em;
+    box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.15);
+}
+
+.auction-bidding button[type="submit"] {
+    background-color: #4caf50;
+    color: white;
+    font-size: 1.2em;
+    border-radius: 5px;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.auction-bidding button[type="submit"]:hover {
+    background-color: #3e8e41;
+}
+
+
 
