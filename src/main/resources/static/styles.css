@@ -265,5 +265,10 @@ body {
     margin-left: 10px;
 }
 
+.auction-bidding {
+    float: right;
+    margin-left: 20px;
+    width: 300px;
+}
 
 
