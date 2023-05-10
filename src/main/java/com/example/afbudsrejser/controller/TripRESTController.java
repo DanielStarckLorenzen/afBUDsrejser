@@ -28,4 +28,9 @@ public class TripRESTController {
     public Trip getTrip(@PathVariable int id){
       return tripRepository.findById(id).get();
     }
+
+    @PostMapping("/bid")
+    public void bid(@RequestBody Trip trip){
+      tripRepository.save(trip);
+    }
 }

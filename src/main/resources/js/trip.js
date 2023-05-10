@@ -159,10 +159,45 @@ async function clickedTrip() {
     bid.min = trip.highestBid ? trip.highestBid + 0 : trip.startingBid;
     bid.value = bid.min;
 
+    const bidForm = document.getElementById("bidForm");
+    bidForm.addEventListener("submit", function(event) {
+        event.preventDefault();
+        const bid = document.getElementById("bid").value;
+        console.log(bid);
+        if (bid > trip.highestBid) {
+            console.log("bid accepted");
+            const userId = JSON.parse(sessionStorage.getItem("user"));
+            bidOnTrip(bid, user, trip);
+        } else {
+            console.log("bid too low");
+        }
+    });
+}
 
+function bidOnTrip(bid, user, trip) {
+    trip = {
+        tripId: trip.tripId,
+        destinationCity: trip.destinationCity,
+        destinationCountry: trip.destinationCountry,
+        airline: trip.airline,
+        flightNo: trip.flightNo,
+        departureDate: trip.departureDate,
+        returnDate: trip.returnDate,
+        hotel: trip.hotel,
+        pictureUrl: trip.pictureUrl,
+        startingBid: trip.startingBid,
+        deadline: trip.deadline,
+        highestBid: bid,
+        user: user
+    }
 
-
-
+    fetch("http://localhost:8080/bid", {
+        method: "POST",
+        body: JSON.stringify(trip),
+        headers: {
+            "Content-Type": "application/json"
+        }
+    });
 }
 
 async function getTrip(id) {
