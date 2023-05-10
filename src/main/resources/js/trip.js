@@ -172,14 +172,18 @@ async function clickedTrip() {
     const bidForm = document.getElementById("bidForm");
     bidForm.addEventListener("submit", function(event) {
         event.preventDefault();
-        const bidAmount = document.getElementById("bid").value;
-        console.log(bidAmount);
-        if (bidAmount > trip.highestBid) {
-            console.log("bid accepted");
-            const user = JSON.parse(sessionStorage.getItem("user"));
-            bidOnTrip(bidAmount, user, trip);
+        if (user === null) {
+            alert("Du skal være logget ind for at byde på en rejse");
         } else {
-            console.log("bid too low");
+            const bidAmount = document.getElementById("bid").value;
+            console.log(bidAmount);
+            if (bidAmount > trip.highestBid) {
+                console.log("bid accepted");
+                const user = JSON.parse(sessionStorage.getItem("user"));
+                bidOnTrip(bidAmount, user, trip);
+            } else {
+                console.log("bid too low");
+            }
         }
     });
 }
@@ -222,6 +226,54 @@ function bidOnTrip(bidAmount, user, trip) {
         }
     });
     location.reload();
+}
+
+async function seePopularTrips() {
+    const allTrips = await loadTrips();
+    const fourRandomTrips = [];
+    for (let i = 0; i < 4; i++) {
+        const randomTrip = allTrips[Math.floor(Math.random() * allTrips.length)];
+        if (!fourRandomTrips.includes(randomTrip)) {
+            fourRandomTrips.push(randomTrip);
+        } else {
+            i--;
+        }
+    }
+    console.log(fourRandomTrips);
+    const popularTrips = document.getElementById("popularTrips");
+    for (let trip of fourRandomTrips) {
+        popularTrips.innerHTML += `
+        <div class="flip-card">
+        <div class="flip-card-inner" id="fi${trip.tripId}">
+          <div class="flip-card-front" id="cf${trip.tripId}">
+            <p class="flip-card-destination">${trip.destinationCity}</p>
+            <p class="flip-card-bid">${trip.startingBid}</p>
+          </div>
+          <div class="flip-card-back" id="fc${trip.tripId}">
+            <p class="flip-card-country">Land: ${trip.destinationCountry}</p>
+            <p class="flip-card-city">By: ${trip.destinationCity}</p>
+            <p class="flip-card-airline">Flyselskab: ${trip.airline}</p>
+            <p class="flip-card-departure">Afgang: ${trip.departureDate}</p>
+            <p class="flip-card-return">Retur: ${trip.returnDate}</p>
+            <p class="flip-card-deadline">Deadline: ${trip.deadline}</p>
+          </div>
+        </div>
+      </div>
+        `;
+
+        const picture = document.getElementById(`cf${trip.tripId}`);
+        picture.style.backgroundImage = `url('${trip.pictureUrl}')`;
+    }
+
+    // Attach the event listener to the parent element
+    popularTrips.addEventListener("click", function(event) {
+        // Check if the clicked element has the flip-card-back class
+        if (event.target.closest(".flip-card-inner")) {
+            const tripId = event.target.closest(".flip-card-inner").id.slice(2);
+            window.location.href = `tripDetails.html?id=${tripId}`;
+        }
+    });
+
 }
 
 async function getTrip(id) {
