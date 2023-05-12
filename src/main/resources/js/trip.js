@@ -56,13 +56,59 @@ async function onLoad() {
     handleIndicator(items[1]);
 
     printTripCards(allTrips);
+
+    const countryFilterInput = document.getElementById("country-filter");
+    countryFilterInput.addEventListener("change", function() {
+        const selectedOption = this.options[this.selectedIndex];
+        countryFilter(selectedOption, allTrips);
+    });
+
+    const typeFilterInput = document.getElementById("type-filter");
+    typeFilterInput.addEventListener("change", function() {
+        const selectedOption = this.options[this.selectedIndex];
+        typeFilter(selectedOption, allTrips);
+    });
+
+    const deadlineFilterInput = document.getElementById("deadline-filter");
+    deadlineFilterInput.addEventListener("change", function() {
+        console.log(this.value);
+        const selectedDate = this.value;
+        deadlineFilter(selectedDate, allTrips);
+    });
+
+    const sortInput = document.getElementById("sort-filter");
+    sortInput.addEventListener("change", function() {
+        console.log(this.options[this.selectedIndex].value)
+        const selectedOption = this.options[this.selectedIndex].value;
+        switch (selectedOption) {
+            case "price-high":
+                sortByPriceHigh(allTrips);
+                break;
+            case "price-low":
+                sortByPriceLow(allTrips);
+                break;
+            case "deadline":
+                sortByDeadline(allTrips);
+                break;
+
+                case "alphabetical":
+                    console.log(allTrips);
+                    sortByName(allTrips);
+                    break;
+            default:
+                console.log("No sort selected");
+                hideTripCards();
+                printTripCards(allTrips);
+                break;
+        }
+    })
 }
 
 function printTripCards(allTrips) {
     const allTripCardsDiv = document.getElementById("tripCards");
 
     for (let trip of allTrips) {
-        let percentageRisen = Math.floor((trip.highestBid / trip.startingBid) * 100);
+        let percentageRisen = Math.round((trip.highestBid / trip.startingBid) * 100 - 100);
         let percentageRisenString;
         let percentageColor = "green";
         if (percentageRisen > 0) {
@@ -73,8 +119,8 @@ function printTripCards(allTrips) {
         }
         allTripCardsDiv.innerHTML += `
       <div class="flip-card">
-        <div class="flip-card-inner" id="fi${trip.tripId}">
-          <div class="flip-card-front" id="cf${trip.tripId}">
+        <div class="flip-card-inner" id="cardInner${trip.tripId}">
+          <div class="flip-card-front" id="cardFront${trip.tripId}">
             <p class="flip-card-destination">${trip.destinationCity}</p>
             <p class="flip-card-highestBid">${trip.highestBid}</p>
             <h5 class="flip-card-startBid">(${trip.startingBid})</h5>
@@ -82,7 +128,7 @@ function printTripCards(allTrips) {
                 <span class="percentage-text">${percentageRisenString}</span>
             </div>
           </div>
-          <div class="flip-card-back" id="fc${trip.tripId}">
+          <div class="flip-card-back" id="cardBack${trip.tripId}">
             <p class="flip-card-country">Land: ${trip.destinationCountry}</p>
             <p class="flip-card-city">By: ${trip.destinationCity}</p>
             <p class="flip-card-airline">Flyselskab: ${trip.airline}</p>
@@ -93,14 +139,14 @@ function printTripCards(allTrips) {
         </div>
       </div>
     `;
-        const highestBid = document.getElementById(`fi${trip.tripId}`).querySelector(".flip-card-highestBid");
-        const startBid = document.getElementById(`fi${trip.tripId}`).querySelector(".flip-card-startBid");
+        const highestBid = document.getElementById(`cardInner${trip.tripId}`).querySelector(".flip-card-highestBid");
+        const startBid = document.getElementById(`cardInner${trip.tripId}`).querySelector(".flip-card-startBid");
         if (trip.highestBid < trip.startingBid) {
             startBid.style.display = "none";
             highestBid.textContent = trip.startingBid;
         }
 
-        const picture = document.getElementById(`cf${trip.tripId}`);
+        const picture = document.getElementById(`cardFront${trip.tripId}`);
         picture.style.backgroundImage = `url('${trip.pictureUrl}')`;
     }
 
@@ -305,6 +351,13 @@ async function seePopularTrips() {
         }
     });
 
+}
+
+function hideTripCards() {
+    const flipCards = document.querySelectorAll(".flip-card");
+    for (let flipCard of flipCards) {
+        flipCard.remove();
+    }
 }
 
 async function getTrip(id) {

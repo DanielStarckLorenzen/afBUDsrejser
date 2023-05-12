@@ -29,3 +29,70 @@ items.forEach((item, index) => {
         handleIndicator(item);
     }
 });
+
+function countryFilter (selectedOption, allTrips) {
+    const country = selectedOption.value;
+    if (country === "all") {
+        hideTripCards();
+        printTripCards(allTrips);
+    } else {
+        const filteredTrips = allTrips.filter(trip => trip.destinationCountry === country);
+        console.log(filteredTrips);
+        hideTripCards();
+        printTripCards(filteredTrips);
+    }
+}
+
+function typeFilter(selectedOption, allTrips) {
+    const type = selectedOption.value;
+    if (type === "all") {
+        hideTripCards();
+        printTripCards(allTrips);
+    }
+    else if (type === "new") {
+        const filteredTrips = allTrips.filter(trip => trip.highestBid === 0);
+        console.log(filteredTrips);
+        hideTripCards();
+        printTripCards(filteredTrips);
+    } else {
+        const filteredTrips = allTrips.filter(trip => trip.highestBid !== 0);
+        console.log(filteredTrips);
+        hideTripCards();
+        printTripCards(filteredTrips);
+    }
+}
+
+function deadlineFilter(selectedDate, allTrips) {
+
+    const deadline = new Date(selectedDate);
+    const filteredTrips = allTrips.filter(trip => new Date(trip.deadline) <= deadline);
+    hideTripCards();
+    printTripCards(filteredTrips);
+}
+
+
+function sortByPriceHigh(items) {
+    items.sort((a, b) => b.startingBid - a.startingBid);
+    hideTripCards();
+    printTripCards(items);
+}
+
+function sortByPriceLow(items) {
+    items.sort((a, b) => a.startingBid - b.startingBid);
+    console.log(items);
+    hideTripCards();
+    printTripCards(items);
+}
+
+function sortByDeadline(items) {
+    items.sort((a, b) => new Date(a.deadline) - new Date(b.deadline));
+    hideTripCards();
+    printTripCards(items);
+}
+
+function sortByName(items) {
+    items.sort((a, b) => a.destinationCity.localeCompare(b.destinationCity));
+    console.log(items);
+    hideTripCards();
+    printTripCards(items);
+}

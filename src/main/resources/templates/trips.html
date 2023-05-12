@@ -22,46 +22,49 @@
 
 <div class="filters">
     <!-- Country filter -->
-    <label for="country-filter">Country</label>
+    <label for="country-filter">Land</label>
     <select id="country-filter">
-        <option value="">Any</option>
-        <option value="usa">USA</option>
-        <option value="france">France</option>
-        <option value="italy">Italy</option>
+        <option value="all">Alle</option>
+        <option value="Spanien">Spanien</option>
+        <option value="Frankrig">Frankrig</option>
+        <option value="Tyskland">Tyskland</option>
+        <option value="Danmark">Danmark</option>
         <!-- more options... -->
     </select>
 
-    <!-- City filter -->
+    <!-- City filter
     <label for="city-filter">City</label>
     <select id="city-filter">
         <option value="">Any</option>
         <option value="new-york">New York</option>
         <option value="paris">Paris</option>
         <option value="rome">Rome</option>
-        <!-- more options... -->
     </select>
+        more options... -->
 
     <!-- Deadline filter -->
     <label for="deadline-filter">Deadline</label>
     <input type="date" id="deadline-filter">
 
-    <!-- Departure date filter -->
-    <label for="departure-filter">Departure date</label>
+    <!-- Departure date filter
+    <label for="departure-filter">Afrejse</label>
     <input type="date" id="departure-filter">
+        more options... -->
 
     <!-- New filter -->
     <label for="type-filter">Type</label>
     <select id="type-filter">
-        <option value="">Any</option>
+        <option value="all">Alle</option>
         <option value="new">Ny</option>
         <option value="alreadyBid">Budt på</option>
     </select>
 
     <!-- Sort filter -->
-    <label for="sort-filter">Sort by</label>
+    <label for="sort-filter">Sorter</label>
     <select id="sort-filter">
-        <option value="none"></option>
-        <option value="price">Price</option>
+        <option value="none">Ingen</option>
+        <option value="price-low">Price Low</option>
+        <option value="price-high">Price High</option>
         <option value="deadline">Deadline</option>
         <option value="alphabetical">Alphabetical</option>
         <!-- more options... -->
